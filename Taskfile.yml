@@ -1,0 +1,83 @@
+version: '3'
+
+tasks:
+  all:
+    - task: nvim
+  timewarrior-all:
+    - task: cmake
+    - task: timewarrior-deps
+    - task: timewarrior
+  nvim:
+    env:
+      NVIM_VERSION: 0.11.1
+      PACKAGE: nvim-linux-x86_64.appimage
+    dir: /tmp/nvim-install
+    cmds:
+       - wget https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/$PACKAGE
+       - wget https://github.com/neovim/neovim/releases/download/v$NVIM_VERSION/shasum.txt
+       - grep "$PACKAGE$" shasum.txt | sha256sum -c
+       - rm shasum.txt
+       - chmod u+x $PACKAGE
+       - mv $PACKAGE ~/.local/bin/nvim
+       - nvim --version
+  tmux:
+    env:
+      TMUX_VERSION: 3.5a
+    dir: '${HOME}'
+    cmds:
+     - |
+      sudo apt-get install libevent-dev ncurses-dev build-essential bison pkg-config automake
+      git clone https://github.com/tmux/tmux.git || true
+      cd tmux
+      git fetch
+      git checkout $TMUX_VERSION
+      sh autogen.sh
+      ./configure
+      make && sudo make install
+      tmux -V
+
+  cmake:
+    env:
+      CMAKE_VERSION: "3.31"
+      CMAKE_VERSION_BUILD: "7"
+    dir: /tmp/cmake-build
+    cmds:
+      - |
+        echo "Installing cmake"
+        wget https://cmake.org/files/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.$CMAKE_VERSION_BUILD.tar.gz
+        tar -xzvf cmake-$CMAKE_VERSION.$CMAKE_VERSION_BUILD.tar.gz
+        cd cmake-$CMAKE_VERSION.$CMAKE_VERSION_BUILD/
+        ./bootstrap
+        make -j$(nproc)
+        sudo make install
+        cmake --version
+
+  timewarrior-deps:
+    cmds:
+      - |
+        echo "Installing other build deps"
+        sudo apt update -y
+        sudo apt install -y build-essential
+        sudo apt install -y asciidoctor
+
+  timewarrior:
+    env:
+      TIMEWARRIOR_VERSION: "1.8.0"
+    dir: /tmp/timewarrior
+    cmds:
+      - |
+        echo "Cloning timew source"
+        rm -rf timewarrior
+        git clone --recurse-submodules https://github.com/GothenburgBitFactory/timewarrior
+        cd timewarrior
+        git checkout v$TIMEWARRIOR_VERSION
+        echo "Building timewarrior"
+        cmake -DCMAKE_BUILD_TYPE=release .
+        make
+        sudo make install
+
+  shell-utils:
+    cmds:
+      - sudo apt install fd-find
+      - ln -s $(which fdfind) ~/.local/bin/fd || true
+      - sudo apt install direnv

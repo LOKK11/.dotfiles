@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Courtesy of Sami Harju https://github.com/samharju/.dotfiles
+
+red="\033[0;31m"
+gray="\033[0;90m"
+green="\033[0;32m"
+yellow="\033[0;33m"
+nocolor="\033[0;0m"
+
+rt=$(pwd)
+venvpath=""
+
+printred () {
+    echo "${red}$1${nocolor}"
+}
+printgray () {
+    echo "${gray}$1${nocolor}"
+}
+
+while [[ -z $venvpath ]]
+do
+    echo $(pwd)
+    echo "$DOTFILES_GIT_REPOS_DIR"
+    if [[ "$(pwd)" == ~ ]]; then
+            printred "Hit home root, abort"
+            break
+    fi
+
+    if [[ "$(pwd)" == "$DOTFILES_GIT_REPOS_DIR" ]]; then
+            printred "Hit repos root, abort"
+            break
+    fi
+
+    if [[ "$(pwd)" == / ]]; then
+            printred "Hit root, abort"
+            break
+    fi
+    venvpath=$(fd -t f -I "activate$" | head -1)
+    if [[ -z $venvpath ]];
+    then
+        printgray "fd -t f -I \"activate\$\" $(pwd) -> nah"
+        cd ..
+    else
+        printgray "fd -t f -I \"activate\$\" $(pwd) -> oh"
+        printgray "found $venvpath"
+        . "$venvpath"
+        echo "${green}OK: ${nocolor}VIRTUAL_ENV=$VIRTUAL_ENV"
+        echo "${yellow}$(python -V)${nocolor}"
+    fi
+done
+
+cd "$rt" || return

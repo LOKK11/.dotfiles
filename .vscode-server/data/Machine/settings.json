@@ -1,0 +1,198 @@
+{
+  "workbench.editor.showTabs": "multiple",
+  "outline.collapseItems": "alwaysCollapse",
+  "files.trimTrailingWhitespace": true,
+  "explorer.compactFolders": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.tree.indent": 20,
+  "editor.minimap.maxColumn": 40,
+  "trailing-spaces.highlightCurrentLine": false,
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#47474779",
+    "editorWhitespace.foreground": "#a7a7a291",
+    "selection.background": "#a9b5b9",
+    "editorIndentGuide.background1": "#ffffff32",
+    "editor.rangeHighlightBorder": "#88888847",
+    // "window.activeBorder": "#900000",
+    "editor.selectionBackground": "#c0202dc4",
+    "editor.selectionHighlightBackground": "#3c9bf38e",
+    "scrollbarSlider.background": "#4e4e4e",
+    "scrollbarSlider.hoverBackground": "#959799",
+    // "activityBar.border": "#9fb3c0ad",
+    "editorGroup.border": "#727272ad",
+    "sideBar.border": "#727272ad",
+    "tab.activeBorder": "#ffffffbc",
+    "git.blame.editorDecorationForeground": "#a7a7a291"
+  },
+  "isort.args": ["--profile", "black"],
+  "flake8.args": ["--max-line-length=94"],
+  "[python]": {
+    "editor.rulers": [88],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.tabCompletion": "onlySnippets",
+    "editor.snippetSuggestions": "top"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "files.trimTrailingWhitespace": false
+  },
+  "[latex]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 85,
+    "editor.wordBasedSuggestions": "off",
+    "editor.formatOnSave": false,
+    "files.trimTrailingWhitespace": false,
+    "editor.rulers": [85]
+  },
+  "workbench.editor.closeEmptyGroups": true,
+  "editor.renderWhitespace": "all",
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.limit.value": 6,
+  "editor.renderControlCharacters": true,
+  "files.eol": "\n",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      // {
+      //     "scope": "string.quoted.docstring.multi.python",
+      //     "settings": {
+      //         "foreground": "#9e9e9e" //change to your preference
+      //     }
+      // },
+      // {
+      //     "scope": [
+      //         "source.python",
+      //         "meta.function-call.python meta.function-call.arguments.python",
+      //         "constant.other"
+      //     ],
+      //     "settings": {
+      //         "foreground": "#c00000",
+      //     },
+      // }
+    ]
+  },
+  "editor.accessibilitySupport": "off",
+  "remote.SSH.remotePlatform": {
+    "127.0.0.1": "linux",
+    "vbox1": "linux",
+    "**/venv/*/**": "linux",
+    "**/node_modules/*/**": "linux"
+  },
+  "editor.fontFamily": "FiraCode Nerd Font Mono",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.4,
+  // "editor.fontWeight": "400",
+  // --> ligatures enabled if the arrow on the left is one part
+  "editor.fontLigatures": false,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+  "workbench.iconTheme": "vscode-icons",
+  "python.analysis.typeCheckingMode": "basic",
+  "rest-client.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
+  "gitlens.hovers.avatars": false,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.changes.locations": ["gutter", "overview"],
+  "gitlens.changes.toggleMode": "window",
+  "gitlens.hovers.annotations.changes": true,
+  "gitlens.hovers.currentLine.changes": true,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.plusFeatures.enabled": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh",
+      "args": ["-l"]
+    }
+  },
+  "files.insertFinalNewline": true,
+  "editor.smoothScrolling": false,
+  "editor.cursorSmoothCaretAnimation": "off",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.invert": 0.0,
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.bind.enter.key": false,
+  "latex-workshop.docker.enabled": true,
+  "latex-workshop.docker.image.latex": "texlive/texlive:latest-full-doc-src",
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "gruvboxMaterial.darkPalette": "material",
+  "gruvboxMaterial.darkWorkbench": "material",
+  "gruvboxMaterial.darkContrast": "hard",
+
+  "gruvboxMaterial.italicKeywords": false,
+  "window.openFoldersInNewWindow": "on",
+
+  "workbench.editor.labelFormat": "short",
+  "editor.stickyScroll.enabled": true,
+  "notebook.output.textLineLimit": 3000,
+  "git.openDiffOnClick": true,
+  "git.blame.editorDecoration.enabled": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "editor.lineNumbers": "on",
+  "search.exclude": {
+    "*worktrees*": true
+  },
+  "vim.useSystemClipboard": true,
+  "editor.cursorSurroundingLines": 20,
+  "jupyter.askForKernelRestart": false,
+
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.indentation": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  // Defines the bracket symbols that increase or decrease the indentation.
+  "editor.language.brackets": [
+    ["[", "]"],
+    ["(", ")"],
+    ["{", "}"]
+  ],
+  "editor.language.colorizedBracketPairs": [
+    ["[", "]"],
+    ["(", ")"],
+    ["{", "}"]
+  ],
+  "plantuml.server": "http://localhost:8624",
+  "plantuml.render": "PlantUMLServer",
+  "basedpyright.analysis.inlayHints.functionReturnTypes": false,
+  "basedpyright.analysis.inlayHints.variableTypes": false,
+  "basedpyright.analysis.inlayHints.callArgumentNames": false,
+  "basedpyright.analysis.inlayHints.genericTypes": false,
+  "basedpyright.analysis.typeCheckingMode": "standard",
+  "basedpyright.analysis.diagnosticMode": "workspace",
+  "python.languageServer": "None",
+  "basedpyright.analysis.ignore": ["venv", "venv*", "venv**"],
+  "basedpyright.analysis.exclude": ["venv", "venv*", "venv**"],
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
+}

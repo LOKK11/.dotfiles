@@ -1,0 +1,22 @@
+[core]
+    excludesfile = ~/.git_global
+    editor = "nano -b -r 72"
+[commit]
+    template = ~/.gitmessage
+[fetch]
+    # Delete outdated remote references when fetching
+    prune = true
+[pull]
+    rebase = true
+[alias]
+    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+[user]
+    useConfigOnly = true
+
+# Remember to create these files below, if needed
+[includeIf "gitdir:~/.dotfiles/"]
+    path = .gitconfig.dotfiles
+
+# This should point to the same directory than $DOTFILES_GIT_REPOS_DIR in .dotfileconfig
+[includeIf "gitdir:~/repos/"]
+    path = .gitconfig.repos

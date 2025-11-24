@@ -1,0 +1,72 @@
+# .dotfiles
+The dotfiles and also some notes to set up a new system from scratch with less work.  
+They are made for Ubuntu. Mileage may vary in other systems, especially non-Debian.  
+These exist primarily for my own sanity. However, if they are useful to you, feel free to use!  
+The dotfiles are written with that in mind that I will always have two computers - one for work and one for personal projects. Having both on the same computer needs some more work, which I am not willing to do right now, since I don't currently need it.
+
+Otherwise I've tried to make the dotfiles as modular as possible - should be usable with some small mods. Read this README carefully and you should be pretty good to go.
+
+## Important files and folders for machine-specific stuff
+`.local_confs`: set machine-specific settings, env variables etc here  
+`bin/`: put machine-specific scripts here  
+`.tmux.conf.local`: set machine-specific keybindings here  
+`.zprofile.local`: set machine-specific profile stuff here  
+  
+
+## Initialization
+### Checklist of other tools
+- Docker and Docker Compose, if they can be used in the organization. Otherwise install the required alternative  
+  - Remember to do any custom docker configuration if needed (mirrors, logging defaults, authentication tokens etc.) 
+- Install zsh if it is not already installed
+  - https://askubuntu.com/a/131838/1195630: `chsh -s $(which zsh)` (should also work on macOS)  
+- VS Code  
+- A good terminal emulator, wezterm is nice and cross-platform
+
+### Before cloning to a new machine
+- Install a nerd font for ligatures and p10k to work, e.g. Fira Code Nerd Font https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode  
+- `fd` and `tree` are needed for some of the stuff. Install by hand from package manager.
+- Ensure that system proxies are set to shell, if behind a proxy.
+- If needed, set `git config --global http.proxy <proxy>`
+
+### Cloning
+Run the following commands. `dotfiles` command is persisted in the dotfiles setup.
+```
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+git clone --bare git@github.com:jolammi/.dotfiles.git .dotfiles
+dotfiles checkout
+dotfiles submodule update --init --recursive
+```
+
+### After cloning
+- `fzf` needs manual installation with ~/.fzf/install in order to work  
+- Create the symlink to `~/.local/bin` like instructed in https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu
+- Install taskfile with `utils/install-taskfile-linux.sh`
+- Build tmux with `task tmux`
+  - When not doing this, I noticed that the `tmux_sessionizer` script could not use `fd` due to `fd` missing from path.
+  - One fix was to symlink fd to `/usr/local/bin` but building with `task tmux` and refreshing shell session worked so I did not end up doing that.
+- Lazygit is included as a submodule, ensure go is installed and run go install 
+  - Install Lazygit from https://github.com/jesseduffield/lazygit/tree/master?tab=readme-ov-file#go
+- install build deps for pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+- create a `.dotfileconfig` file to use the tmux-sessionizer properly, e.g.:
+```bash
+# ~/.dotfileconfig
+export DOTFILES_GIT_REPOS_DIR=$HOME/repos/
+```
+- Read the note about git configs and create them.
+
+### Git 
+Git usage is based on conditional configs. Dotfiles git config can be set in `.gitconfig.dotfiles`. The git config for work, personal projects etc. can be set in `.gitconfig.repos`. If your repos dir above is not `~/repos`, change the right path into `.gitconfig` (git config files apparently do not support variable expansion in includeif, which would be neat for this purpose. Needs more investigation to do it some other way.)
+Sample `.gitconfig.dotfiles` or `.gitconfig.repos`:
+```
+[user]
+    signingkey = /path/to/pubkey
+    name = ...
+    email = ...
+[gpg]
+    format = ssh
+[commit]
+    gpgsign = true
+```
+
+## Thanks
+The basic layout and some of the scripts are borrowed from Sami Harju's dotfiles, https://github.com/samharju/.dotfiles.

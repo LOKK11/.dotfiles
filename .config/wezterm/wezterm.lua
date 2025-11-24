@@ -109,7 +109,7 @@ config.keys = {
 
 
 -- local bg_path = bg_dir_root .. '.config/wezterm/white.jpg'
-local bg_path = bg_dir_root .. '.config/wezterm/monsteradeliciosa_dark.jpg'
+local bg_path = bg_dir_root .. '.config/wezterm/kissa.jpg'
 
 config.window_background_image = bg_path
 config.window_close_confirmation = 'NeverPrompt'

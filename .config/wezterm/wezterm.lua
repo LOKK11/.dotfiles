@@ -62,7 +62,7 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     label = 'Command line',
     args = { 'ubuntu2404.exe' },
   })
-  bg_dir_root = 'C:/Users/jolammi/'
+  bg_dir_root = 'C:/Users/OMISTAJA/'
 
   config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
   config.integrated_title_buttons = { 'Hide', 'Maximize', 'Close' }

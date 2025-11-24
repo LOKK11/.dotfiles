@@ -32,7 +32,7 @@ Otherwise I've tried to make the dotfiles as modular as possible - should be usa
 Run the following commands. `dotfiles` command is persisted in the dotfiles setup.
 ```
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-git clone --bare git@github.com:jolammi/.dotfiles.git .dotfiles
+git clone --bare git@github.com:LOKK11/.dotfiles.git .dotfiles
 dotfiles checkout
 dotfiles submodule update --init --recursive
 ```
@@ -69,4 +69,5 @@ Sample `.gitconfig.dotfiles` or `.gitconfig.repos`:
 ```
 
 ## Thanks
-The basic layout and some of the scripts are borrowed from Sami Harju's dotfiles, https://github.com/samharju/.dotfiles.
+These dotfiles are created almost completely by Jouni Lammi  
+https://github.com/jolammi/.dotfiles
